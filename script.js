@@ -11,32 +11,32 @@ document.addEventListener('DOMContentLoaded', function() {
         const taskText = taskInput.value.trim();
 
         // Check if taskText is not empty
-        if (taskText === "") {
+        if (taskText !== "") {
+            // Create new task item (li) and set its text content to taskText
+            const taskItem = document.createElement('li');
+            taskItem.textContent = taskText;
+
+            // Create remove button, set its text content, and assign a class name
+            const removeButton = document.createElement('button');
+            removeButton.textContent = "Remove";
+            removeButton.className = 'remove-btn';
+
+            // Add event to remove the task item when the button is clicked
+            removeButton.onclick = function() {
+                taskList.removeChild(taskItem);
+            };
+
+            // Append the remove button to the task item
+            taskItem.appendChild(removeButton);
+
+            // Append the task item to the task list
+            taskList.appendChild(taskItem);
+
+            // Clear the input field for the next task
+            taskInput.value = "";
+        } else {
             alert("Please enter a task.");
-            return;
         }
-
-        // Step 3: Create new task and remove button elements
-        const taskItem = document.createElement('li');
-        taskItem.textContent = taskText;
-
-        const removeButton = document.createElement('button');
-        removeButton.textContent = "Remove";
-        removeButton.className = 'remove-btn';
-
-        // Add event to remove the task item when the button is clicked
-        removeButton.onclick = function() {
-            taskList.removeChild(taskItem);
-        };
-
-        // Append the remove button to the task item
-        taskItem.appendChild(removeButton);
-
-        // Append the task item to the task list
-        taskList.appendChild(taskItem);
-
-        // Clear the input field for the next task
-        taskInput.value = "";
     }
 
     // Step 4: Attach event listeners
@@ -49,8 +49,5 @@ document.addEventListener('DOMContentLoaded', function() {
             addTask();
         }
     });
-
-    // Optional Step: Call addTask when the DOM content is loaded, if needed
-    // addTask(); // Uncomment this if you have any pre-existing tasks you want to add on load
 });
 

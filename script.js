@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
     function addTask() {
-        const taskInput = taskInput.value.trim();
-        if (taskInput !== "") {
+        const taskText = taskInput.value.trim();
+        if (taskText !== "") {
             const taskItem = document.createElement('li');
-            taskItem.textContent = taskInput;
+            taskItem.textContent = taskText;
             const removeButton = document.createElement('button');
             removeButton.textContent = "Remove";
             removeButton.className = 'remove-btn';
